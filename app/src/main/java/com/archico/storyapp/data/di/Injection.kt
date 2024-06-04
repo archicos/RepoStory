@@ -9,9 +9,9 @@ import com.archico.storyapp.utils.dataStore
 
 object Injection {
     fun provideRepository(context: Context): StoryRepository {
-        val database = StoryDatabase.getDatabase(context)
         val pref = SettingPreferences.getInstance(context.dataStore)
         val apiService = ApiConfig.getApiService(pref)
+        val database = StoryDatabase.getDatabase(context)
         return StoryRepository.getInstance(apiService, pref,database)
     }
 }

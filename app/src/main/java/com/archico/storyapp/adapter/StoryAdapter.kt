@@ -15,9 +15,7 @@ import androidx.core.util.Pair
 import androidx.paging.PagingDataAdapter
 import com.archico.storyapp.data.response.Story
 
-class StoryAdapter :
-    PagingDataAdapter<Story, StoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
-
+class StoryAdapter : PagingDataAdapter<Story, StoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = CardViewItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -33,20 +31,19 @@ class StoryAdapter :
 
     class MyViewHolder(private val binding: CardViewItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(story: Story){
-
-            binding.textViewCardTitle.text = story.name
-            binding.textViewCardDescription.text = story.description
+            binding.tvCardTitle.text = story.name
+            binding.tvCardDesc.text = story.description
             Glide.with(binding.root.context)
                 .load(story.photoUrl)
-                .into(binding.imageViewCard)
+                .into(binding.imgCard)
 
             binding.root.setOnClickListener {
                 val optionsCompat: ActivityOptionsCompat =
                     ActivityOptionsCompat.makeSceneTransitionAnimation(
                         binding.root.context as Activity,
-                        Pair(binding.imageViewCard as View, "profile"),
-                        Pair(binding.textViewCardTitle as View, "name"),
-                        Pair(binding.textViewCardDescription as View, "description")
+                        Pair(binding.imgCard as View, "profile"),
+                        Pair(binding.tvCardTitle as View, "name"),
+                        Pair(binding.tvCardDesc as View, "description")
                     )
 
                 val intentDetailActivity = Intent(binding.root.context,DetailStoryActivity::class.java)

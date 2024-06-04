@@ -8,19 +8,19 @@
         android:title="@string/settings" >
         <menu>
             <item
-                android:id="@+id/normal_type"
+                android:id="@+id/normal_landscape"
                 android:title="@string/normal_type"
                 app:showAsAction="never" />
             <item
-                android:id="@+id/satellite_type"
+                android:id="@+id/satellite_landscape"
                 android:title="@string/satellite_type"
                 app:showAsAction="never" />
             <item
-                android:id="@+id/terrain_type"
+                android:id="@+id/terrain_landscape"
                 android:title="@string/terrain_type"
                 app:showAsAction="never" />
             <item
-                android:id="@+id/hybrid_type"
+                android:id="@+id/hybrid_landscape"
                 android:title="@string/hybrid_type"
                 app:showAsAction="never" />
         </menu>

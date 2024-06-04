@@ -9,14 +9,11 @@ import com.archico.storyapp.repository.StoryRepository
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
-class LoginViewModel(
-    private val storyRepository: StoryRepository,
-):ViewModel(){
-
+class LoginViewModel(private val storyRepository: StoryRepository, ):ViewModel(){
     private val _responseResult = MutableLiveData<ResultState<LoginResponse>>()
     val responseResult = _responseResult
 
-    fun submitLogin(email:String, password:String){
+    fun postLogin(email:String, password:String){
         viewModelScope.launch {
             try {
                 _responseResult.value = ResultState.Loading

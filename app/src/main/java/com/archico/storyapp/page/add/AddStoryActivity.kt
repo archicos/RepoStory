@@ -16,12 +16,12 @@ import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import com.archico.storyapp.R
 import com.archico.storyapp.data.ResultState
-import com.archico.storyapp.databinding.ActivityAddDetailBinding
+import com.archico.storyapp.databinding.ActivityAddStoryBinding
 import com.archico.storyapp.page.ViewModelFactory
 import com.archico.storyapp.page.BaseClass
 import com.archico.storyapp.page.camera.CameraActivity
 import com.archico.storyapp.page.camera.CameraActivity.Companion.CAMERAX_RESULT
-import com.archico.storyapp.page.home.HomeActivity
+import com.archico.storyapp.page.home.MainActivity
 import com.archico.storyapp.utils.reduceFileImage
 import com.archico.storyapp.utils.uriToFile
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -39,7 +39,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 
 class AddStoryActivity : BaseClass() , OnMapReadyCallback {
 
-    private lateinit var binding: ActivityAddDetailBinding
+    private lateinit var addStoryBinding: ActivityAddStoryBinding
     private lateinit var mMap: GoogleMap
     private var currentImageUri: Uri? = null
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -47,9 +47,80 @@ class AddStoryActivity : BaseClass() , OnMapReadyCallback {
     private var lat:Float? = null
     private var lon:Float? = null
 
-    private val factory = ViewModelFactory.getInstance(this)
+    private val viewModelFactory = ViewModelFactory.getInstance(this)
     private val addStoryViewModel by viewModels<AddStoryViewModel> {
-        factory
+        viewModelFactory
+    }
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                Toast.makeText(this, "Permission approved", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Permission denied", Toast.LENGTH_LONG).show()
+            }
+        }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        addStoryBinding = ActivityAddStoryBinding.inflate(layoutInflater)
+        setContentView(addStoryBinding.root)
+        setActionBar()
+
+        if (!allPermissionsGranted()) {
+            requestPermissionLauncher.launch(REQUIRED_PERMISSION)
+        }
+
+        mapFragment = supportFragmentManager
+            .findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this@AddStoryActivity)
+        mapFragment.view?.visibility = android.view.View.GONE
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        addStoryBinding.apply {
+            btnGallery.setOnClickListener { startGallery() }
+            btnCamera.setOnClickListener {
+                startCamera()
+            }
+            btnSubmit.setOnClickListener {
+                if(etDescription.text.toString().isEmpty()){
+                    showToast(getString(R.string.empty_description_warning))
+                    return@setOnClickListener
+                }
+                postStory()
+            }
+            cboxLocation.setOnClickListener {
+                if(cboxLocation.isChecked){
+                    getMyLocation()
+                }else{
+                    mapFragment.view?.visibility = android.view.View.GONE
+                }
+            }
+        }
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setView(R.layout.dialog_loading)
+        val dialog: AlertDialog = builder.create()
+        val intentHome = Intent(this,MainActivity::class.java)
+        addStoryViewModel.responseResult.observe(this) { result ->
+            when (result) {
+                is ResultState.Loading -> {
+                    dialog.show()
+                }
+                is ResultState.Success -> {
+                    dialog.dismiss()
+                    intentHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intentHome)
+                    finish()
+                }
+                is ResultState.Error -> {
+                    dialog.dismiss()
+                    showToast(result.error)
+                }
+            }
+        }
+
     }
 
     private fun allPermissionsGranted() =
@@ -58,80 +129,8 @@ class AddStoryActivity : BaseClass() , OnMapReadyCallback {
             REQUIRED_PERMISSION
         ) == PackageManager.PERMISSION_GRANTED
 
-    private val requestPermissionLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted: Boolean ->
-            if (isGranted) {
-                Toast.makeText(this, "Permission request granted", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this, "Permission request denied", Toast.LENGTH_LONG).show()
-            }
-        }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityAddDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        setActionBar()
-
-        mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this@AddStoryActivity)
-        mapFragment.view?.visibility = android.view.View.GONE
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
-        binding.apply {
-            buttonGallery.setOnClickListener { startGallery() }
-            buttonCamera.setOnClickListener {
-                startCamera()
-            }
-            buttonAdd.setOnClickListener {
-                if(edDescription.text.toString().isEmpty()){
-                    showToast(getString(R.string.empty_description_warning))
-                    return@setOnClickListener
-                }
-                uploadStory()
-            }
-            buttonLocation.setOnClickListener {
-                if(buttonLocation.isChecked){
-                    getMyLocation()
-                }else{
-                    mapFragment.view?.visibility = android.view.View.GONE
-                }
-            }
-        }
-
-        if (!allPermissionsGranted()) {
-            requestPermissionLauncher.launch(REQUIRED_PERMISSION)
-        }
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setView(R.layout.dialog_loading)
-        val dialog: AlertDialog = builder.create()
-
-        val intentHome = Intent(this,HomeActivity::class.java)
-
-        addStoryViewModel.responseResult.observe(this) { result ->
-            when (result) {
-                is ResultState.Loading -> {
-                    dialog.show()
-                }
-                is ResultState.Success -> {
-                    dialog.dismiss()
-//                    showToast(getString(R.string.success_add_story))
-                    intentHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    startActivity(intentHome)
-                    finish()
-                }
-                is ResultState.Error -> {
-//                    showLoading(false)
-                    dialog.dismiss()
-                    showToast(result.error)
-                }
-            }
-        }
-
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun startGallery() {
@@ -152,7 +151,7 @@ class AddStoryActivity : BaseClass() , OnMapReadyCallback {
     private fun showImage() {
         currentImageUri?.let {
             Log.d("Image URI", "showImage: $it")
-            binding.imagePreview.setImageURI(it)
+            addStoryBinding.imgPreview.setImageURI(it)
         }
     }
 
@@ -170,26 +169,21 @@ class AddStoryActivity : BaseClass() , OnMapReadyCallback {
         }
     }
 
-    private fun uploadStory() {
+    private fun postStory() {
         currentImageUri?.let { uri ->
-            val imageFile = uriToFile(uri, this).reduceFileImage()
-            Log.d("Image File", "showImage: ${imageFile.path}")
-            val description = binding.edDescription.text.toString()
+            val imgFile = uriToFile(uri, this).reduceFileImage()
+            val description = addStoryBinding.etDescription.text.toString()
             val requestBodyDescription = description.toRequestBody("text/plain".toMediaType())
             val latRequestBody = lat?.toString()?.toRequestBody("text/plain".toMediaType())
             val lonRequestBody = lon?.toString()?.toRequestBody("text/plain".toMediaType())
-            val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
+            val requestImageFile = imgFile.asRequestBody("image/jpeg".toMediaType())
             val multipartBody = MultipartBody.Part.createFormData(
                 "photo",
-                imageFile.name,
+                imgFile.name,
                 requestImageFile
             )
             addStoryViewModel.addStory(multipartBody,requestBodyDescription,latRequestBody,lonRequestBody)
         } ?: showToast(getString(R.string.empty_image_warning))
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -199,14 +193,14 @@ class AddStoryActivity : BaseClass() , OnMapReadyCallback {
         mMap.uiSettings.isCompassEnabled = true
         mMap.uiSettings.isMapToolbarEnabled = true
 
-        val dicodingSpace = LatLng(-6.8957643, 107.6338462)
+        val myHome = LatLng(2.9755181, 99.0750768)
         mMap.addMarker(
             MarkerOptions()
-                .position(dicodingSpace)
-                .title("Dicoding Space")
-                .snippet("Batik Kumeli No.50")
+                .position(myHome)
+                .title("Archico's Headquarter")
+                .snippet("Pematangsiantar, Sumatera Utara")
         )
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(dicodingSpace, 15f))
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(myHome, 15f))
     }
 
     private val requestPermissionLauncherLocation =
@@ -232,7 +226,7 @@ class AddStoryActivity : BaseClass() , OnMapReadyCallback {
                 } else {
                     Toast.makeText(
                         this@AddStoryActivity,
-                        "Location is not found. Try Again",
+                        "Location Failed",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -241,8 +235,9 @@ class AddStoryActivity : BaseClass() , OnMapReadyCallback {
             requestPermissionLauncherLocation.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         }
     }
-
     companion object {
         private const val REQUIRED_PERMISSION = Manifest.permission.CAMERA
+        private const val REQUEST_CODE_PERMISSIONS = 10
+        const val CAMERA_X_RESULT = 200
     }
 }

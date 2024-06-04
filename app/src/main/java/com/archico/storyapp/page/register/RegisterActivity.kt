@@ -13,38 +13,32 @@ import com.archico.storyapp.page.ViewModelFactory
 import com.archico.storyapp.page.login.LoginActivity
 
 class RegisterActivity : AppCompatActivity(){
-
-    private lateinit var binding: ActivityRegisterBinding
-
-    private val factory: ViewModelFactory = ViewModelFactory.getInstance(this)
+    private lateinit var registerBinding: ActivityRegisterBinding
+    private val viewModelFactory: ViewModelFactory = ViewModelFactory.getInstance(this)
     private val registerViewModel:RegisterViewModel by viewModels<RegisterViewModel>{
-        factory
+        viewModelFactory
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
+        registerBinding = ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(registerBinding.root)
         supportActionBar?.hide()
 
         val loginActivity = Intent(this, LoginActivity::class.java)
-        binding.apply {
-            hyperlinkLogin.setOnClickListener{
+        registerBinding.apply {
+            hyplLogin.setOnClickListener{
                 startActivity(loginActivity)
             }
-
-            registerButton.setOnClickListener {
-                if (edRegisterEmail.text!!.isNotEmpty() && edRegisterName.text!!.isNotEmpty() && edRegisterPassword.text?.length!! >= 8){
-                    registerViewModel.submitRegister(
-                        name = edRegisterName.text.toString(),
-                        email = edRegisterEmail.text.toString(),
+            btnRegister.setOnClickListener {
+                if (etRegisterEmail.text!!.isNotEmpty() && etRegisterUsername.text!!.isNotEmpty() && edRegisterPassword.text?.length!! >= 8){
+                    registerViewModel.postRegister(
+                        name = etRegisterUsername.text.toString(),
+                        email = etRegisterEmail.text.toString(),
                         password = edRegisterPassword.text.toString()
                     )
                 }else{
-                    Toast.makeText(this@RegisterActivity, "Please fill the form correctly", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RegisterActivity, "Invalid form fill", Toast.LENGTH_SHORT).show()
                 }
-
             }
 
             val builder: AlertDialog.Builder = AlertDialog.Builder(this@RegisterActivity)
@@ -63,19 +57,15 @@ class RegisterActivity : AppCompatActivity(){
                             Toast.LENGTH_SHORT
                         ).show()
                     }
-
                     is ResultState.Success -> {
                         dialog.dismiss()
                         val homeActivity = Intent(this@RegisterActivity, LoginActivity::class.java)
                         startActivity(homeActivity)
                         finish()
                     }
-
                     else -> dialog.dismiss()
                 }
             }
         }
     }
-
-
 }

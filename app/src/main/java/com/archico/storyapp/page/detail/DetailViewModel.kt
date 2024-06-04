@@ -14,7 +14,6 @@ class DetailViewModel(
 ): ViewModel(){
     private var _story = MutableLiveData<ResultState<Story>>()
     val story = _story
-
     fun getDetailStory(id: String){
         viewModelScope.launch {
             try {
@@ -27,9 +26,8 @@ class DetailViewModel(
                             _story.value = ResultState.Success(response.story)
                         }
                     }else{
-                        _story.value = ResultState.Error("Token not found")
+                        _story.value = ResultState.Error("Invalid token")
                     }
-
                 }
             }catch (e:HttpException){
                 _story.value = ResultState.Error(e.message())

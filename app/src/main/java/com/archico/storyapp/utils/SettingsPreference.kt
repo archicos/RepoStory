@@ -11,22 +11,18 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
-
 class SettingPreferences private constructor(private val dataStore: DataStore<Preferences>) {
-
     private val themeKey = booleanPreferencesKey("theme_setting")
     private val language = stringPreferencesKey("en")
     private val token = stringPreferencesKey("token")
-
-    suspend fun saveToken(token: String) {
-        dataStore.edit { preferences ->
-            preferences[this.token] = token
-        }
-    }
-
     fun getToken(): Flow<String?> {
         return dataStore.data.map { preferences ->
             preferences[token]
+        }
+    }
+    suspend fun saveToken(token: String) {
+        dataStore.edit { preferences ->
+            preferences[this.token] = token
         }
     }
 
@@ -35,28 +31,24 @@ class SettingPreferences private constructor(private val dataStore: DataStore<Pr
             preferences.remove(token)
         }
     }
-
-    fun getThemeSetting(): Flow<Boolean> {
-        return dataStore.data.map { preferences ->
-            preferences[themeKey] ?: false
-        }
-    }
-
-    suspend fun saveThemeSetting(isDarkModeActive: Boolean) {
-        dataStore.edit { preferences ->
-            preferences[themeKey] = isDarkModeActive
-        }
-    }
-
     fun getLanguageSetting(): Flow<String> {
         return dataStore.data.map { preferences ->
             preferences[language] ?: "en"
         }
     }
-
     suspend fun saveLanguageSetting(language: String) {
         dataStore.edit { preferences ->
             preferences[this.language] = language
+        }
+    }
+    fun getThemeSetting(): Flow<Boolean> {
+        return dataStore.data.map { preferences ->
+            preferences[themeKey] ?: false
+        }
+    }
+    suspend fun saveThemeSetting(isDarkModeActive: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[themeKey] = isDarkModeActive
         }
     }
 

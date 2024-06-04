@@ -14,59 +14,55 @@ import com.archico.storyapp.page.ViewModelFactory
 
 class DetailStoryActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityDetailStoryBinding
-    private val factory = ViewModelFactory.getInstance(this)
+    private lateinit var detailStoryBinding: ActivityDetailStoryBinding
+    private val viewModelFactory = ViewModelFactory.getInstance(this)
     private val detailViewModel by viewModels<DetailViewModel> {
-        factory
+        viewModelFactory
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDetailStoryBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        supportActionBar?.setCustomView(R.layout.app_bar)
-        supportActionBar?.setDisplayShowCustomEnabled(true)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(getColor(R.color.primary)))
-
+        detailStoryBinding = ActivityDetailStoryBinding.inflate(layoutInflater)
+        setContentView(detailStoryBinding.root)
+        setupActionBar()
 
         val id = intent.getStringExtra(EXTRA_ID)
-
         if(id != null){
             detailViewModel.getDetailStory(id)
         }
-
         detailViewModel.story.observe(this){
             story ->
             when(story){
                 is ResultState.Loading -> {
-                    binding.shimmerLayout.startShimmer()
+                    detailStoryBinding.layShimmer.startShimmer()
                 }
                 is ResultState.Success -> {
-                    binding.apply {
-                        shimmerLayout.apply {
+                    detailStoryBinding.apply {
+                        layShimmer.apply {
                             stopShimmer()
                             visibility = View.GONE
                         }
-
-                        textViewTitle.text = story.data.name
-                        textViewDescription.text = story.data.description
-
+                        tvStoryTitle.text = story.data.name
+                        tvStoryDesc.text = story.data.description
                         Glide.with(this@DetailStoryActivity)
                             .load(story.data.photoUrl)
-                            .into(imageViewStory)
+                            .into(imgStory)
                     }
                 }
                 is ResultState.Error -> {
                     Toast.makeText(this, story.error, Toast.LENGTH_SHORT).show()
                 }
             }
-
         }
-
     }
-
+    private fun setupActionBar() {
+        supportActionBar?.apply {
+            setCustomView(R.layout.app_bar)
+            setDisplayShowCustomEnabled(true)
+            setDisplayShowTitleEnabled(false)
+            setBackgroundDrawable(ColorDrawable(getColor(R.color.primary)))
+        }
+    }
     companion object {
         const val EXTRA_ID = "extra_id"
     }

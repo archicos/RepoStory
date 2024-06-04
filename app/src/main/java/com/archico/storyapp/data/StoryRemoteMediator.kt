@@ -2,9 +2,11 @@ package com.archico.storyapp.data
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
+import androidx.paging.PagingData
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
+import com.archico.storyapp.data.response.ListStoryItem
 import com.archico.storyapp.data.response.Story
 import com.archico.storyapp.data.retrofit.ApiService
 import com.archico.storyapp.database.RemoteKeys
@@ -15,15 +17,9 @@ class StoryRemoteMediator(
     private val database: StoryDatabase,
     private val apiService: ApiService
 ): RemoteMediator<Int, Story>() {
-
-    private companion object {
-        const val INITIAL_PAGE_INDEX = 1
-    }
-
     override suspend fun initialize(): InitializeAction {
         return InitializeAction.LAUNCH_INITIAL_REFRESH
     }
-
     override suspend fun load(
         loadType: LoadType,
         state: PagingState<Int, Story>
@@ -47,7 +43,6 @@ class StoryRemoteMediator(
             }
         }
 
-
         return try {
             val responseData = apiService.getStory(page, state.config.pageSize).listStory
             val endOfPaginationReached = responseData.isEmpty()
@@ -69,7 +64,6 @@ class StoryRemoteMediator(
             MediatorResult.Error(exception)
         }
     }
-
     private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, Story>): RemoteKeys? {
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()?.let { data ->
             database.remoteKeysDao().getRemoteKeysId(data.id)
@@ -85,6 +79,13 @@ class StoryRemoteMediator(
             state.closestItemToPosition(position)?.id?.let { id ->
                 database.remoteKeysDao().getRemoteKeysId(id)
             }
+        }
+    }
+    companion object {
+        const val INITIAL_PAGE_INDEX = 1
+
+        fun snapshot(items: List<ListStoryItem>): PagingData<ListStoryItem> {
+            return PagingData.from(items)
         }
     }
 }

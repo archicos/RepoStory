@@ -11,9 +11,6 @@ import android.widget.Toast
 import androidx.core.net.toUri
 import com.archico.storyapp.R
 
-/**
- * Implementation of App Widget functionality.
- */
 class ImageBannerWidget : AppWidgetProvider() {
 
     companion object {
@@ -45,7 +42,6 @@ class ImageBannerWidget : AppWidgetProvider() {
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
-
         for (appWidgetId in appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId)
         }

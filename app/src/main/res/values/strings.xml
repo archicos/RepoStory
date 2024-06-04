@@ -5,28 +5,28 @@
     <string name="app_logo">App Logo</string>
 
 <!--    Story Item-->
-    <string name="title">Bangkit Academy</string>
-    <string name="description">
+    <string name="story_title">Bangkit Academy</string>
+    <string name="story_description">
         Designed to prepare students with in-demand skills and tech certifications, the Bangkit curriculum offers 3 interdisciplinary learning paths - machine learning, mobile development, and cloud computing. By the end of this program, you\'ll be equipped with the tech expertise, soft skills, and English proficiency you need to transit from academia to the workplace and succeed at leading companies.
     </string>
 
 <!--    Login -->
     <string name="login">Login</string>
     <string name="email">Email</string>
-    <string name="email_hint">Your Email</string>
+    <string name="email_placeholder">Your Email</string>
     <string name="password">Password</string>
-    <string name="password_hint">Your Password</string>
+    <string name="password_placeholder">Your Password</string>
     <string name="dont_have_account">Dont have account?</string>
-    <string name="login_here">Login here</string>
+    <string name="login_hyperlink">Login here</string>
     <string name="logout">Logout</string>
 
 <!--    Register -->
     <string name="register">Register</string>
-    <string name="register_here">Register here</string>
-    <string name="already_have_an_account">Already have account?</string>
+    <string name="register_hyperlink">Register here</string>
+    <string name="account_exist">Already have account?</string>
     <string name="username">Username</string>
-    <string name="your_username">Your username</string>
-    <string name="password_require">(must be at least 8 characters)</string>
+    <string name="username_placeholder">Your username</string>
+    <string name="password_hint">(must be at least 8 characters)</string>
 
 <!--    Settings -->
     <string name="settings">Settings</string>
@@ -38,7 +38,7 @@
     <string name="image">image</string>
     <string name="gallery">Gallery</string>
     <string name="camera">Camera</string>
-    <string name="description_title">Add Description</string>
+    <string name="add_description">Add Description</string>
     <string name="desc_placeholder">Type here…</string>
     <string name="save">Save</string>
 
@@ -50,12 +50,12 @@
 <!--    Utils -->
     <string name="please_wait">Please Wait…</string>
     <string name="empty_image_warning">The Image is Empty!</string>
-    <string name="empty_description_warning">The Description is Empty!</string>
-    <string name="empty_text">Empty Text</string>
     <string name="minimum_characters">Password minimum 8 character</string>
+    <string name="add_image">Add Image</string>
+    <string name="empty_description_warning">The Description is Empty!</string>
     <string name="camera_error">Camera Failed!</string>
     <string name="retry">Retry Load</string>
-    <string name="add_image">Add Image</string>
+    <string name="empty_text">Empty Text</string>
 
 <!--    Location -->
     <string name="add_your_location">Add Location</string>

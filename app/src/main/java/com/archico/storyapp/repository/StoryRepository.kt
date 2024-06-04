@@ -20,9 +20,9 @@ class StoryRepository private constructor(
     private val database: StoryDatabase
 ) {
     fun getToken() = pref.getToken()
-
     suspend fun saveToken(token: String) = pref.saveToken(token)
-
+    suspend fun login(email: String, password: String) = apiService.login(email, password)
+    suspend fun register(name: String, email: String, password: String) = apiService.register(name, email, password)
 
     @OptIn(ExperimentalPagingApi::class)
     fun getStory(): LiveData<PagingData<Story>> {
@@ -36,23 +36,16 @@ class StoryRepository private constructor(
             remoteMediator = StoryRemoteMediator(database, apiService)
         ).liveData
     }
-
-    suspend fun getStoryWidget() = apiService.getWidgetStories()
-
-    suspend fun login(email: String, password: String) = apiService.login(email, password)
-
-    suspend fun register(name: String, email: String, password: String) = apiService.register(name, email, password)
-
+    suspend fun getStoriesWithLocation() = apiService.getStoriesWithLocation()
     suspend fun getDetailStory(id: String) = apiService.getDetailStory(id)
 
+    suspend fun getStoryWidget() = apiService.getWidgetStories()
     suspend fun addStory(
         multipartBody: MultipartBody.Part,
         requestBodyDescription: RequestBody,
         latRequestBody:RequestBody?,
         lonRequestBody:RequestBody?
     ) = apiService.uploadImage(multipartBody, requestBodyDescription, latRequestBody, lonRequestBody)
-
-    suspend fun getStoriesWithLocation() = apiService.getStoriesWithLocation()
 
     companion object {
         @Volatile

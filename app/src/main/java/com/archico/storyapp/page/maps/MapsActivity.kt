@@ -28,23 +28,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private val boundsBuilder = LatLngBounds.Builder()
-    private lateinit var binding: ActivityMapsBinding
-    private val factory: ViewModelFactory = ViewModelFactory.getInstance(this)
+    private lateinit var mapsBinding: ActivityMapsBinding
+    private val viewModelFactory: ViewModelFactory = ViewModelFactory.getInstance(this)
     private val mapsViewModel:MapsViewModel by viewModels<MapsViewModel>{
-        factory
+        viewModelFactory
     }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivityMapsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        supportActionBar?.setCustomView(R.layout.app_bar)
-        supportActionBar?.setDisplayShowCustomEnabled(true)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(getColor(R.color.primary)))
+        mapsBinding = ActivityMapsBinding.inflate(layoutInflater)
+        setContentView(mapsBinding.root)
+        setupActionBar()
 
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -53,19 +46,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        mMap.uiSettings.isZoomControlsEnabled = true
-        mMap.uiSettings.isIndoorLevelPickerEnabled = true
-        mMap.uiSettings.isCompassEnabled = true
-        mMap.uiSettings.isMapToolbarEnabled = true
 
+        mMap.apply {
+            uiSettings.isZoomControlsEnabled = true
+            uiSettings.isIndoorLevelPickerEnabled = true
+            uiSettings.isCompassEnabled = true
+            uiSettings.isMapToolbarEnabled = true
+        }
         setMapStyle()
 
         mapsViewModel.storyLocation.observe(this){
                 story ->
             when(story){
                 is ResultState.Loading -> {
-                    //show loading
-                    Log.i("MapsActivity", "onMapReady: Loading")
+                    Log.i("Maps", "Loading")
                 }
                 is ResultState.Success -> {
                     story.data.forEach{
@@ -80,7 +74,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                         )
                         boundsBuilder.include(latLng)
                     }
-
                     val bounds: LatLngBounds = boundsBuilder.build()
                     mMap.animateCamera(
                         CameraUpdateFactory.newLatLngBounds(
@@ -104,25 +97,34 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.normal_type -> {
+            R.id.normal_landscape -> {
                 mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
                 true
             }
-            R.id.satellite_type -> {
+            R.id.satellite_landscape -> {
                 mMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
                 true
             }
-            R.id.terrain_type -> {
+            R.id.terrain_landscape -> {
                 mMap.mapType = GoogleMap.MAP_TYPE_TERRAIN
                 true
             }
-            R.id.hybrid_type -> {
+            R.id.hybrid_landscape -> {
                 mMap.mapType = GoogleMap.MAP_TYPE_HYBRID
                 true
             }
             else -> {
                 super.onOptionsItemSelected(item)
             }
+        }
+    }
+
+    private fun setupActionBar() {
+        supportActionBar?.apply {
+            setCustomView(R.layout.app_bar)
+            setDisplayShowCustomEnabled(true)
+            setDisplayShowTitleEnabled(false)
+            setBackgroundDrawable(ColorDrawable(getColor(R.color.primary)))
         }
     }
 
@@ -134,15 +136,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 toast(resources.getString(R.string.style_error))
             }
         } catch (exception: Resources.NotFoundException) {
-            Log.e(TAG, "Can't find style. Error: ", exception)
+            Log.e(TAG, "Invalid style: ", exception)
         }
-    }
-
-    companion object {
-        private const val TAG = "MapsActivity"
     }
 
     private fun toast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    companion object {
+        private const val TAG = "MapsActivity"
     }
 }

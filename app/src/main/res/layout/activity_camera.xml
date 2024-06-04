@@ -13,7 +13,7 @@
         android:layout_height="match_parent" />
 
     <ImageView
-        android:id="@+id/captureImage"
+        android:id="@+id/btn_capture"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginBottom="32dp"

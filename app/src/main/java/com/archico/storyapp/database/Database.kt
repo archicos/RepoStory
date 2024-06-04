@@ -19,7 +19,6 @@ abstract class StoryDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: StoryDatabase? = null
-
         @JvmStatic
         fun getDatabase(context: Context): StoryDatabase {
             return INSTANCE ?: synchronized(this) {

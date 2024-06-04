@@ -9,7 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.archico.storyapp.R
-import com.archico.storyapp.page.home.HomeActivity
+import com.archico.storyapp.page.home.MainActivity
 import com.archico.storyapp.page.login.LoginActivity
 import com.archico.storyapp.utils.setLocale
 
@@ -21,34 +21,31 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
         supportActionBar?.hide()
 
-        val factory: ViewModelFactory = ViewModelFactory.getInstance(this)
-        val mainViewModel: MainViewModel by viewModels<MainViewModel> {
-            factory
+        val viewModelFactory: ViewModelFactory = ViewModelFactory.getInstance(this)
+        val baseViewModel: BaseViewModel by viewModels<BaseViewModel> {
+            viewModelFactory
         }
 
         Handler(Looper.getMainLooper()).postDelayed(
             {
-                mainViewModel.getThemeSetting().observe(this){
+                baseViewModel.getThemeSetting().observe(this){
                         isDarkModeActive ->
                     AppCompatDelegate.setDefaultNightMode(if (isDarkModeActive) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO)
                 }
 
-                mainViewModel.getLanguageSetting().observe(this){
+                baseViewModel.getLanguageSetting().observe(this){
                     language ->
                     setLocale(this,language)
-//                    recreate()
                 }
-                mainViewModel.getToken().observe(this){
+                baseViewModel.getToken().observe(this){
                     token ->
-                    val intentActivity = Intent(this, if (token == null) LoginActivity::class.java else HomeActivity::class.java)
+                    val intentActivity = Intent(this, if (token == null) LoginActivity::class.java else MainActivity::class.java)
                     startActivity(intentActivity)
                     finish()
                 }
-
             },
             SPLASH_TIME_OUT
         )
-
     }
 
     companion object {

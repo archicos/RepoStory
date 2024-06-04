@@ -3,19 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main"
+    tools:context=".page.settings.SettingsActivity"
     style="@style/primaryBackground"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".page.settings.SettingsActivity"
     android:padding="16dp"
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/sf_pro_bold"
+        android:fontFamily="@font/san_fransisco_bold"
         android:text="@string/settings"
         android:textAlignment="textStart"
         android:textColor="?attr/colorPrimary"
@@ -33,42 +33,40 @@
         android:gravity="start|top"
         android:orientation="vertical"
         android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintEnd_toEndOf="@+id/tv"
+        app:layout_constraintStart_toStartOf="@+id/tv"
+        app:layout_constraintTop_toBottomOf="@+id/tv">
 
         <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switchLanguage"
+            android:id="@+id/swtch_lang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/sf_pro_regular"
             android:text="@string/language"
             android:textColor="?attr/colorPrimary"
+            android:fontFamily="@font/san_fransisco_regular"
             app:thumbTint="@color/primary"
             app:trackTint="@color/grey" />
 
         <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switchDarkMode"
+            android:id="@+id/swtch_dark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/sf_pro_regular"
             android:text="@string/darkmode"
             android:textColor="?attr/colorPrimary"
+            android:fontFamily="@font/san_fransisco_regular"
             app:thumbTint="@color/primary"
             app:trackTint="@color/grey" />
-
-
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/action_logout"
+        android:id="@+id/btn_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:backgroundTint="@color/primary"
-        android:fontFamily="@font/sf_pro_regular"
         android:text="@string/logout"
         android:textColor="@color/white"
+        android:fontFamily="@font/san_fransisco_regular"
+        android:backgroundTint="@color/primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"

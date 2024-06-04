@@ -12,7 +12,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 fun vectorToBitmap(@DrawableRes id: Int,context: AppCompatActivity): BitmapDescriptor {
     val vectorDrawable = ResourcesCompat.getDrawable(context.resources, id, null)
     if (vectorDrawable == null) {
-        Log.e("BitmapHelper", "Resource not found")
+        Log.e("Bitmap", "Not found")
         return BitmapDescriptorFactory.defaultMarker()
     }
     val bitmap = Bitmap.createBitmap(
@@ -22,7 +22,6 @@ fun vectorToBitmap(@DrawableRes id: Int,context: AppCompatActivity): BitmapDescr
     )
     val canvas = Canvas(bitmap)
     vectorDrawable.setBounds(0, 0, canvas.width, canvas.height)
-//    DrawableCompat.setTint(vectorDrawable, color)
     vectorDrawable.draw(canvas)
     return BitmapDescriptorFactory.fromBitmap(bitmap)
 }

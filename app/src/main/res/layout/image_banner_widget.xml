@@ -4,9 +4,9 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:weightSum="10">
 
         <StackView
@@ -18,29 +18,29 @@
 
         <TextView
             android:id="@+id/banner_text"
+            android:text="@string/appwidget_text"
+            android:textAlignment="center"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center|bottom"
             android:layout_weight="0.5"
             android:padding="16dp"
             android:background="@color/primary"
-            android:text="@string/appwidget_text"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:fontFamily="@font/sf_pro_bold"/>
+            android:fontFamily="@font/san_fransisco_bold"/>
     </LinearLayout>
 
     <TextView
         android:id="@+id/empty_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:background="@color/black"
         android:text="@string/empty_text"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:visibility="gone" />
 
 </FrameLayout>

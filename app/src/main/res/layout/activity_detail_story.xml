@@ -10,7 +10,7 @@
         android:orientation="vertical">
 
         <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmerLayout"
+            android:id="@+id/lay_shimmer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone">
@@ -20,7 +20,7 @@
         <LinearLayout
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/main"
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -34,7 +34,7 @@
                 app:cardCornerRadius="16sp">
 
                 <ImageView
-                    android:id="@+id/imageViewStory"
+                    android:id="@+id/img_story"
                     android:transitionName="profile"
                     android:layout_width="match_parent"
                     android:layout_height="240dp"
@@ -46,24 +46,24 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/textViewTitle"
+                android:id="@+id/tv_story_title"
                 android:transitionName="name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/title"
-                android:fontFamily="@font/sf_pro_bold"
+                android:text="@string/story_title"
+                android:fontFamily="@font/san_fransisco_bold"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="?attr/colorPrimary"
                 android:layout_marginTop="16dp"/>
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/textViewDescription"
+                android:id="@+id/tv_story_desc"
                 android:transitionName="description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/sf_pro_regular"
-                android:text="@string/description"
+                android:fontFamily="@font/san_fransisco_regular"
+                android:text="@string/story_description"
                 android:layout_marginTop="4dp"
                 android:textColor="?attr/colorPrimary"
                 android:ellipsize="end"/>

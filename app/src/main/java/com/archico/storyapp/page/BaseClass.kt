@@ -10,30 +10,27 @@ import com.archico.storyapp.page.maps.MapsActivity
 import com.archico.storyapp.page.settings.SettingsActivity
 
 open class BaseClass:AppCompatActivity() {
-
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.maps -> {
+                val settingIntent = Intent(this, MapsActivity::class.java)
+                startActivity(settingIntent)
+            }
+            R.id.settings -> {
+                val settingIntent = Intent(this, SettingsActivity::class.java)
+                startActivity(settingIntent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
     fun setActionBar(){
         supportActionBar?.setCustomView(R.layout.app_bar)
         supportActionBar?.setDisplayShowCustomEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setBackgroundDrawable(ColorDrawable(getColor(R.color.primary)))
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.settings -> {
-                val settingIntent = Intent(this, SettingsActivity::class.java)
-                startActivity(settingIntent)
-            }
-            R.id.maps -> {
-                val settingIntent = Intent(this, MapsActivity::class.java)
-                startActivity(settingIntent)
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 }

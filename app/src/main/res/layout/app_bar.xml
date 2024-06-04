@@ -2,16 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center_vertical"
     android:paddingHorizontal="8dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
     android:background="@color/primary">
 
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="50dp"
         android:src="@drawable/img_logo_with_text_monotone"
         android:contentDescription="@string/app_name"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:layout_gravity="start"/>
 
 </LinearLayout>

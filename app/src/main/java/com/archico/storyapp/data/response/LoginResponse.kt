@@ -13,7 +13,6 @@ data class LoginResponse(
 	@field:SerializedName("message")
 	val message: String
 )
-
 data class LoginResult(
 
 	@field:SerializedName("name")

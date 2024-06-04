@@ -77,7 +77,7 @@ internal class StackRemoteViewsFactory(private val mContext: Context) : RemoteVi
                 .centerCrop()
                 .into(object : CustomTarget<Bitmap>() {
                     override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                        rv.setImageViewBitmap(R.id.imageView, resource)
+                        rv.setImageViewBitmap(R.id.img, resource)
                     }
 
                     override fun onLoadCleared(placeholder: Drawable?) {
@@ -91,7 +91,7 @@ internal class StackRemoteViewsFactory(private val mContext: Context) : RemoteVi
         )
         val fillInIntent = Intent()
         fillInIntent.putExtras(extras)
-        rv.setOnClickFillInIntent(R.id.imageView, fillInIntent)
+        rv.setOnClickFillInIntent(R.id.img, fillInIntent)
 
         return rv
     }

@@ -9,55 +9,46 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.archico.storyapp.R
 import com.archico.storyapp.databinding.ActivitySettingsBinding
 import com.archico.storyapp.page.ViewModelFactory
-import com.archico.storyapp.page.MainViewModel
+import com.archico.storyapp.page.BaseViewModel
 import com.archico.storyapp.page.login.LoginActivity
 import com.archico.storyapp.utils.setLocale
 
 class SettingsActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivitySettingsBinding
-    private val factory: ViewModelFactory = ViewModelFactory.getInstance(this)
-    private val mainViewModel: MainViewModel by viewModels<MainViewModel> {
-        factory
+    private lateinit var settingsBinding: ActivitySettingsBinding
+    private val viewModelFactory: ViewModelFactory = ViewModelFactory.getInstance(this)
+    private val baseViewModel: BaseViewModel by viewModels<BaseViewModel> {
+        viewModelFactory
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySettingsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        settingsBinding = ActivitySettingsBinding.inflate(layoutInflater)
+        setContentView(settingsBinding.root)
+        setupActionBar()
 
-        supportActionBar?.setCustomView(R.layout.app_bar)
-        supportActionBar?.setDisplayShowCustomEnabled(true)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(getColor(R.color.primary)))
-
-
-
-        binding.apply {
-            mainViewModel.getThemeSetting().observe(this@SettingsActivity){
-                switchDarkMode.isChecked = it
+        settingsBinding.apply {
+            baseViewModel.getLanguageSetting().observe(this@SettingsActivity){
+                swtchLang.isChecked = it == "en"
             }
-
-            mainViewModel.getLanguageSetting().observe(this@SettingsActivity){
-                switchLanguage.isChecked = it == "en"
+            baseViewModel.getThemeSetting().observe(this@SettingsActivity){
+                swtchDark.isChecked = it
             }
-
-            switchLanguage.setOnCheckedChangeListener { _, isChecked ->
-                setLocale(this@SettingsActivity, if (isChecked) "en" else "in")
-                switchLanguage.isChecked = isChecked
-                mainViewModel.setLanguageSetting(if (isChecked) "en" else "in")
-            }
-            switchDarkMode.setOnCheckedChangeListener{
+            swtchDark.setOnCheckedChangeListener{
                 _, isChecked ->
-
                 AppCompatDelegate.setDefaultNightMode(if (isChecked) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO)
-                switchDarkMode.isChecked = isChecked
-                mainViewModel.setThemeSetting(switchDarkMode.isChecked)
+                swtchDark.isChecked = isChecked
+                baseViewModel.setThemeSetting(swtchDark.isChecked)
             }
-            val intentLogout = Intent(this@SettingsActivity, LoginActivity::class.java)
-            actionLogout.setOnClickListener {
-                mainViewModel.logout()
+            swtchLang.setOnCheckedChangeListener { _, isChecked ->
+                setLocale(this@SettingsActivity, if (isChecked) "en" else "in")
+                swtchLang.isChecked = isChecked
+                baseViewModel.setLanguageSetting(if (isChecked) "en" else "in")
+            }
 
+            val intentLogout = Intent(this@SettingsActivity, LoginActivity::class.java)
+            btnLogout.setOnClickListener {
+                baseViewModel.logout()
                 intentLogout.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intentLogout)
                 finish()
@@ -65,4 +56,12 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupActionBar() {
+        supportActionBar?.apply {
+            setCustomView(R.layout.app_bar)
+            setDisplayShowCustomEnabled(true)
+            setDisplayShowTitleEnabled(false)
+            setBackgroundDrawable(ColorDrawable(getColor(R.color.primary)))
+        }
+    }
 }

@@ -29,16 +29,14 @@ class AddStoryViewModel(
                         val response = storyRepository.addStory(multipartBody, requestBodyDescription,latRequestBody,lonRequestBody)
                         _responseResult.value = ResultState.Success(response)
                     }else{
-                        _responseResult.value = ResultState.Error("Token not found")
+                        _responseResult.value = ResultState.Error("Invalid Token")
                     }
                 }
-
             }catch (e:HttpException){
                 val errorBody = e.response()?.errorBody()?.string()
                 val errorResponse = Gson().fromJson(errorBody, MessageResponse::class.java)
                 _responseResult.value = ResultState.Error(errorResponse.message)
             }
-
         }
     }
 }

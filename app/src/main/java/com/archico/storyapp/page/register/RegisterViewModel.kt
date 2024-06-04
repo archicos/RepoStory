@@ -15,7 +15,7 @@ class RegisterViewModel(
     private val _responseResult = MutableLiveData<ResultState<MessageResponse>>()
     val responseResult = _responseResult
 
-    fun submitRegister(name:String,email:String, password:String){
+    fun postRegister(name:String, email:String, password:String){
         viewModelScope.launch {
             try {
                 _responseResult.value = ResultState.Loading
