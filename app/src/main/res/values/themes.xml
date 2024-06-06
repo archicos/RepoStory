@@ -1,0 +1,30 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.StoryApp" parent="Theme.Material3.DayNight">
+        <item name="android:statusBarColor">@color/primary</item>
+        <item name="colorPrimary">@color/dark</item>
+        <item name="colorOnPrimary">@color/light</item>
+        <item name="colorSecondary">@color/primary</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="color">@color/black_tertiary</item>
+    </style>
+
+    <style name="Theme.StoryApp" parent="Base.Theme.StoryApp" />
+
+    <style name="primaryBackground" parent="">
+        <item name="android:background">@drawable/img_background_light</item>
+    </style>
+
+    <style name="cardViewContainerBackground" parent="">
+        <item name="android:backgroundTint">@color/white</item>
+    </style>
+
+    <style name="Theme.StoryApp.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault">
+        <item name="appWidgetRadius">16dp</item>
+        <item name="appWidgetInnerRadius">8dp</item>
+    </style>
+
+    <style name="Theme.StoryApp.AppWidgetContainer" parent="Theme.StoryApp.AppWidgetContainerParent">
+        <item name="appWidgetPadding">16dp</item>
+    </style>
+</resources>

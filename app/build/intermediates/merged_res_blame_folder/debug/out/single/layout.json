@@ -1,0 +1,114 @@
+[
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-mergeDebugResources-55:\\layout\\card_view_item.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-main-58:\\layout\\card_view_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-mergeDebugResources-55:\\layout\\item_loading.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-main-58:\\layout\\item_loading.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-mergeDebugResources-55:\\layout\\activity_register.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-main-58:\\layout\\activity_register.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-mergeDebugResources-55:\\layout\\activity_detail_shimmer.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-main-58:\\layout\\activity_detail_shimmer.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-mergeDebugResources-55:\\layout\\activity_camera.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-main-58:\\layout\\activity_camera.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-mergeDebugResources-55:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-main-58:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-mergeDebugResources-55:\\layout\\image_banner_widget.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-main-58:\\layout\\image_banner_widget.xml"
+    },
+    {
+        "merged": "com.archico.storyapp-mergeDebugResources-55:/layout/activity_register.xml",
+        "source": "com.archico.storyapp-main-58:/layout/activity_register.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-mergeDebugResources-55:\\layout\\card_view_item_shimmer.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-main-58:\\layout\\card_view_item_shimmer.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-mergeDebugResources-55:\\layout\\activity_home.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-main-58:\\layout\\activity_home.xml"
+    },
+    {
+        "merged": "com.archico.storyapp-mergeDebugResources-55:/layout/image_banner_widget.xml",
+        "source": "com.archico.storyapp-main-58:/layout/image_banner_widget.xml"
+    },
+    {
+        "merged": "com.archico.storyapp-mergeDebugResources-55:/layout/item_loading.xml",
+        "source": "com.archico.storyapp-main-58:/layout/item_loading.xml"
+    },
+    {
+        "merged": "com.archico.storyapp-mergeDebugResources-55:/layout/card_view_item.xml",
+        "source": "com.archico.storyapp-main-58:/layout/card_view_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-mergeDebugResources-55:\\layout\\activity_add_detail.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-main-58:\\layout\\activity_add_detail.xml"
+    },
+    {
+        "merged": "com.archico.storyapp-mergeDebugResources-55:/layout/activity_settings.xml",
+        "source": "com.archico.storyapp-main-58:/layout/activity_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-mergeDebugResources-55:\\layout\\activity_add_story.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-main-58:\\layout\\activity_add_story.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-mergeDebugResources-55:\\layout\\activity_settings.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-main-58:\\layout\\activity_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-mergeDebugResources-55:\\layout\\dialog_loading.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-main-58:\\layout\\dialog_loading.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-mergeDebugResources-55:\\layout\\app_bar.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-main-58:\\layout\\app_bar.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-mergeDebugResources-55:\\layout\\activity_maps.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-main-58:\\layout\\activity_maps.xml"
+    },
+    {
+        "merged": "com.archico.storyapp-mergeDebugResources-55:/layout/dialog_loading.xml",
+        "source": "com.archico.storyapp-main-58:/layout/dialog_loading.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-mergeDebugResources-55:\\layout\\activity_detail_story.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-main-58:\\layout\\activity_detail_story.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-mergeDebugResources-55:\\layout\\activity_login.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-main-58:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-mergeDebugResources-55:\\layout\\activity_splash_screen.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-main-58:\\layout\\activity_splash_screen.xml"
+    },
+    {
+        "merged": "com.archico.storyapp-mergeDebugResources-55:/layout/activity_login.xml",
+        "source": "com.archico.storyapp-main-58:/layout/activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-mergeDebugResources-55:\\layout\\widget_item.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.2\\com.archico.storyapp-main-58:\\layout\\widget_item.xml"
+    },
+    {
+        "merged": "com.archico.storyapp-mergeDebugResources-55:/layout/activity_add_story.xml",
+        "source": "com.archico.storyapp-main-58:/layout/activity_add_story.xml"
+    },
+    {
+        "merged": "com.archico.storyapp-mergeDebugResources-55:/layout/activity_detail_story.xml",
+        "source": "com.archico.storyapp-main-58:/layout/activity_detail_story.xml"
+    }
+]

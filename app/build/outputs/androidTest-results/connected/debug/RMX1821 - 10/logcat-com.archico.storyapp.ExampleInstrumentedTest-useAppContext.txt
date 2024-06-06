@@ -1,0 +1,2 @@
+05-27 14:43:27.577  7560  7605 I TestRunner: started: useAppContext(com.archico.storyapp.ExampleInstrumentedTest)
+05-27 14:43:27.584  7560  7605 I TestRunner: finished: useAppContext(com.archico.storyapp.ExampleInstrumentedTest)
