@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<testsuite name="com.archico.storyapp.ExampleInstrumentedTest" tests="1" failures="0" errors="0" skipped="0" time="3.711" timestamp="2024-05-27T07:43:31" hostname="localhost">
-  <properties>
-    <property name="device" value="RMX1821 - 10" />
-    <property name="flavor" value="" />
-    <property name="project" value=":app" />
-  </properties>
-  <testcase name="useAppContext" classname="com.archico.storyapp.ExampleInstrumentedTest" time="0.013" />
-</testsuite>
