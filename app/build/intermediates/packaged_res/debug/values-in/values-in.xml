@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_exist">Sudah Punya Akun?</string>
+    <string name="add">Tambah</string>
+    <string name="add_description">Deskripsi</string>
+    <string name="add_image">Tambah Gambar</string>
+    <string name="add_widget">Tambah Widget</string>
+    <string name="add_your_location">Tambah Lokasi</string>
+    <string name="app_logo">Aplikasi Logo</string>
+    <string name="app_name">RepoStory</string>
+    <string name="app_widget_description">Widget oleh RepoStory</string>
+    <string name="appwidget_text">Cerita Saya</string>
+    <string name="camera">Kamera</string>
+    <string name="camera_error">Kamera gagal!</string>
+    <string name="darkmode">Mode Gelap</string>
+    <string name="desc_placeholder">Ketik deskripsi...</string>
+    <string name="dont_have_account">Belum Punya Akun?</string>
+    <string name="email">Email</string>
+    <string name="email_placeholder">Email Anda</string>
+    <string name="empty_description_warning">Deskripsi kosong!</string>
+    <string name="empty_image_warning">Gambar kosong!</string>
+    <string name="empty_text">Teks Kosong</string>
+    <string name="gallery">Galeri</string>
+    <string name="hybrid_type">Hybrid</string>
+    <string name="image">Gambar</string>
+    <string name="language">Bahasa Inggris</string>
+    <string name="login">Masuk</string>
+    <string name="login_hyperlink">Masuk di sini</string>
+    <string name="logout">Keluar</string>
+    <string name="maps">Peta</string>
+    <string name="minimum_characters">Password tidak boleh kurang dari 8 karakter</string>
+    <string name="normal_type">Normal</string>
+    <string name="password">Kata Sandi</string>
+    <string name="password_hint">(Minimal 8 karakter)</string>
+    <string name="password_placeholder">Kata Sandi Anda</string>
+    <string name="please_wait">Mohon Tunggu…</string>
+    <string name="register">Daftar</string>
+    <string name="register_hyperlink">Daftar di sini</string>
+    <string name="retry">Muat Ulang</string>
+    <string name="satellite_type">Satelit</string>
+    <string name="save">Unggah</string>
+    <string name="settings">Pengaturan</string>
+    <string name="story_description">
+        Dirancang untuk mempersiapkan siswa dengan keterampilan yang dibutuhkan dan sertifikasi teknologi, kurikulum Bangkit menawarkan 3 jalur pembelajaran interdisipliner - pembelajaran mesin, pengembangan seluler, dan komputasi awan. Di akhir program ini, Anda akan dibekali dengan keahlian teknologi, soft skill, dan kemahiran bahasa Inggris yang Anda perlukan untuk berpindah dari dunia akademis ke dunia kerja dan meraih kesuksesan di perusahaan terkemuka.
+    </string>
+    <string name="story_title">Akademi Bangkit</string>
+    <string name="style_error">Gagal menampilkan tema peta</string>
+    <string name="terrain_type">Terrain</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="username">Nama Pengguna</string>
+    <string name="username_placeholder">Nama pengguna Anda</string>
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.archico.storyapp.page.home.MainViewModelTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-05-27T09:42:51" hostname="LAPTOP-49M0Q6TM" time="2.477">
+  <properties/>
+  <testcase name="when Get Story Empty Should Return No Data" classname="com.archico.storyapp.page.home.MainViewModelTest" time="2.454"/>
+  <testcase name="when Get Story Should Not Null and Return Success" classname="com.archico.storyapp.page.home.MainViewModelTest" time="0.02"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
